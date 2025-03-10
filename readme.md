@@ -47,16 +47,16 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 
 **Table of Contents**
 
-- 1\. Prerequisites
-- 2\. Project Structure
-- 3\. Setting Up the Environment
-- 4\. Compilation Steps
-- 5\. Advanced Compilation Options
-- 6\. Packaging and Distribution
-- 7\. Troubleshooting
-- 8\. Additional Resources
+- 1. Prerequisites
+- 2. Project Structure
+- 3. Setting Up the Environment
+- 4. Compilation Steps
+- 5. Advanced Compilation Options
+- 6. Packaging and Distribution
+- 7. Troubleshooting
+- 8. Additional Resources
 
-**1\. Prerequisites**
+**1. Prerequisites**
 
 **1.1 Software Requirements**
 
@@ -68,12 +68,12 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 - **SCons** (pip install scons)
 - **ccache** (optional, for caching compiled files)
 
-**2\. System Requirements**
+**2. System Requirements**
 
 - Minimum 4 GB RAM (8 GB Recommended)
 - Sufficient disk space for temporary compilation files
 
-**3\. Setting Up the Environment**
+**3. Setting Up the Environment**
 
 **3.1 Install Required Libraries**
 
@@ -87,7 +87,7 @@ ccache --version
 
 Ensure all compilers are in your PATH.
 
-**4\. Compilation Steps**
+**4. Compilation Steps**
 
 **4.1 Basic Compilation Command**
 
@@ -105,7 +105,7 @@ nuitka --onefile \\
 
 "ADC Archiver 1.2.0.py"
 
-**5\. Advanced Compilation Options**
+**5. Advanced Compilation Options**
 
 **5.1 Optimizing for Performance**
 
@@ -115,7 +115,7 @@ nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"
 
 set PATH=C:\\path\\to\\ccache;%PATH%
 
-**6\. Packaging and Distribution**
+**6. Packaging and Distribution**
 
 **6.1 Testing the Executable**
 
@@ -125,7 +125,7 @@ ADC Archiver 1.2.0.exe
 
 You can use NSIS, Inno Setup, or InstallForge to create a setup wizard.
 
-**7\. Troubleshooting**
+**7. Troubleshooting**
 
 **7.1 Common Errors**
 
@@ -136,7 +136,7 @@ You can use NSIS, Inno Setup, or InstallForge to create a setup wizard.
 
 - [Nuitka Documentation](https://nuitka.net/user-documentation/)
 - [SCons Documentation](https://scons.org/documentation.html)
-- [Python 3.12 Downloads](https://www.python.org/downloads/release/python-312/)
+- [Python 3.12 Downloads](https://www.python.org/downloads/release/python-3129/)
 - [Tcl/TK Documentation](https://www.tcl-lang.org/doc/)
 
 For any further questions or issues, feel free to reach out to the support team or consult the documentation provided in the project repository.
