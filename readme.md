@@ -139,6 +139,6 @@ You can use NSIS, Inno Setup, or InstallForge to create a setup wizard.
 - [Python 3.12 Downloads](https://www.python.org/downloads/release/python-3129/)
 - [Tcl/TK Documentation](https://www.tcl-lang.org/doc/)
 
-For any further questions or issues, feel free to reach out to the support team or consult the documentation provided in the project repository.
+For any further questions or issues, you can create an issue on this repo!
 
 (c) 2025 Mealman1551
