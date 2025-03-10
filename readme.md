@@ -4,7 +4,7 @@ Welcome to the **ADC-compile-from-scratch** repository! This repository includes
 
 ### Overview
 
-This repository contains the **Nukita** files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups.
+This repository contains the **Nukita** files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups and/or precompiled executables.
 
 **Please Note:**  
 - This repository does not include the EXE files or precompiled setups. It is solely intended for compiling the software from scratch using the following resources:
@@ -29,7 +29,7 @@ Before you start compiling, you need to have the following installed:
 
 ### Setup
 
-1. Install **Python 3** from the [official Python website](https://www.python.org/downloads/).
+1. Install **Python 3** from the [official Python website](https://www.python.org/downloads/). (Python 3.12.x recommended)
 2. Install the **Nukita library** for Python (refer to the [Nukita documentation](https://nukita.readthedocs.io/) for installation steps).
 3. Ensure that **C**, **Tkinter**, **DBlite/SQLite**, and **JavaScript** are installed and properly configured on your system.
 
@@ -61,11 +61,11 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 **1.1 Software Requirements**
 
 - **Python 3.12**
-- **Nuitka** (pip install nuitka)
+- **Nuitka** (`pip install nuitka`)
 - **C/C++ Compiler**
   - **Windows**: Microsoft Build Tools or MinGW
-  - **Linux**: GCC (sudo apt install build-essential)
-- **SCons** (pip install scons)
+  - **Linux**: GCC (`sudo apt install build-essential`)
+- **SCons** (`pip install scons`)
 - **ccache** (optional, for caching compiled files)
 
 **2. System Requirements**
@@ -77,13 +77,13 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 
 **3.1 Install Required Libraries**
 
-pip install nuitka scons
+`pip install nuitka scons`
 
 **3.2 Verify Compiler Setup**
 
-gcc --version
+`gcc --version`
 
-ccache --version
+`ccache --version`
 
 Ensure all compilers are in your PATH.
 
@@ -91,35 +91,35 @@ Ensure all compilers are in your PATH.
 
 **4.1 Basic Compilation Command**
 
-nuitka --onefile --windows-icon-from-ico=ico\\ADCIcon.ico "ADC Archiver 1.2.0.py"
+`nuitka --onefile --windows-icon-from-ico=ico\\ADCIcon.ico "ADC Archiver 1.2.0.py"`
 
 **4.2 Including Additional Files**
 
-nuitka --onefile \\
+`nuitka --onefile \\`
 
-\--windows-icon-from-ico=ico\\ADCIcon.ico \\
+`\--windows-icon-from-ico=ico\\ADCIcon.ico \\`
 
-\--include-data-file=libcrypto-3.dll=libcrypto-3.dll \\
+`\--include-data-file=libcrypto-3.dll=libcrypto-3.dll \\`
 
-\--include-data-file=tcl86t.dll=tcl86t.dll \\
+`\--include-data-file=tcl86t.dll=tcl86t.dll \\`
 
-"ADC Archiver 1.2.0.py"
+`"ADC Archiver 1.2.0.py"`
 
 **5. Advanced Compilation Options**
 
 **5.1 Optimizing for Performance**
 
-nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"
+`nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"`
 
 **5.2 Using Ccache for Faster Builds**
 
-set PATH=C:\\path\\to\\ccache;%PATH%
+`set PATH=C:\\path\\to\\ccache;%PATH%`
 
 **6. Packaging and Distribution**
 
 **6.1 Testing the Executable**
 
-ADC Archiver 1.2.0.exe
+`ADC Archiver 1.2.0.exe`
 
 **6.2 Creating an Installer**
 
