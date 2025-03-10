@@ -21,7 +21,7 @@ This repository contains the **Nukita** files required to compile an EXE package
 
 Before you start compiling, you need to have the following installed:
 
-- **Python 3** (with the Nukita library)
+- **Python 3.12.x** (with the Nukita library)
 - **C** (for compiling C-based files)
 - **Python Tkinter** (for GUI-related tasks)
 - **DBlite/SQLite** (for database operations)
@@ -29,7 +29,7 @@ Before you start compiling, you need to have the following installed:
 
 ### Setup
 
-1. Install **Python 3** from the [official Python website](https://www.python.org/downloads/). (Python 3.12.x recommended)
+1. Install **Python 3.12.x** from the [official Python website](https://www.python.org/downloads/). (Python 3.12.x recommended)
 2. Install the **Nukita library** for Python (refer to the [Nukita documentation](https://nukita.readthedocs.io/) for installation steps).
 3. Ensure that **C**, **Tkinter**, **DBlite/SQLite**, and **JavaScript** are installed and properly configured on your system.
 
@@ -61,7 +61,7 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 
 **1.1 Software Requirements**
 
-- **Python 3.12**
+- **Python 3.12.x**
 - **Nuitka** (`pip install nuitka`)
 - **C/C++ Compiler**
   - **Windows**: Microsoft Build Tools or MinGW
