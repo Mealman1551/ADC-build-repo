@@ -54,7 +54,8 @@ This document provides detailed instructions on how to compile ADC Archiver 1.2.
 - 5. Advanced Compilation Options
 - 6. Packaging and Distribution
 - 7. Troubleshooting
-- 8. Additional Resources
+- 8. Download of source code and files
+- 9. Additional Resources
 
 **1. Prerequisites**
 
@@ -132,7 +133,13 @@ You can use NSIS, Inno Setup, or InstallForge to create a setup wizard.
 - **Missing DLLs**: Verify that all required libraries are in the correct directories.
 - **Compilation Warnings**: Check scons-report.txt for detailed logs.
 
-**8\. Additional Resources**
+**8 Download**
+
+## [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.zip)
+
+## [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.tar.gz)
+
+**9. Additional Resources**
 
 - [Nuitka Documentation](https://nuitka.net/user-documentation/)
 - [SCons Documentation](https://scons.org/documentation.html)
