@@ -1,6 +1,6 @@
 # ADC compile from scratch
 
-Welcome to the **ADC-compile-from-scratch** repository! This repository includes all the necessary files for manually compiling a setup or MSI without needing to use the setup from the main branch.
+Welcome to the **ADC-compile-from-scratch** repository! This repository includes all the necessary files for manually compiling the full ADC 1.2.0.exe without needing to use the setup from the main branch.
 
 ### Overview
 
