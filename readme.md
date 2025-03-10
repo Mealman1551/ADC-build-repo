@@ -4,7 +4,7 @@ Welcome to the **ADC-compile-from-scratch** repository! This repository includes
 
 ### Overview
 
-This repository contains the **Nukita** files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups and/or precompiled executables.
+This repository contains the **Nuitka** files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups and/or precompiled executables.
 
 **Please Note:**  
 - This repository does not include the EXE files or precompiled setups. It is solely intended for compiling the software from scratch using the following resources:
@@ -21,7 +21,7 @@ This repository contains the **Nukita** files required to compile an EXE package
 
 Before you start compiling, you need to have the following installed:
 
-- **Python 3.12.x** (with the Nukita library)
+- **Python 3.12.x** (with the Nuitka library)
 - **C** (for compiling C-based files)
 - **Python Tkinter** (for GUI-related tasks)
 - **DBlite/SQLite** (for database operations)
@@ -30,12 +30,12 @@ Before you start compiling, you need to have the following installed:
 ### Setup
 
 1. Install **Python 3.12.x** from the [official Python website](https://www.python.org/downloads/). (Python 3.12.x recommended)
-2. Install the **Nukita library** for Python (refer to the [Nukita documentation](https://nukita.readthedocs.io/) for installation steps).
+2. Install the **Nuitka library** for Python (refer to the [Nuitka documentation](https://nuitka.readthedocs.io/) for installation steps).
 3. Ensure that **C**, **Tkinter**, **DBlite/SQLite**, and **JavaScript** are installed and properly configured on your system.
 
 ### Compiling from Scratch
 
-To compile the software manually, you will need to use the Python source code file: 
+To compile the software manually, you will need to use the Python source code file:
 
 - **`ADC Archiver 1.2.0.py`** (Full source code)
 
@@ -92,19 +92,19 @@ Ensure all compilers are in your PATH.
 
 **4.1 Basic Compilation Command**
 
-`nuitka --onefile --windows-icon-from-ico=ico\\ADCIcon.ico "ADC Archiver 1.2.0.py"`
+`nuitka --onefile --windows-icon-from-ico=ico\ADCIcon.ico "ADC Archiver 1.2.0.py"`
 
 **4.2 Including Additional Files**
 
-`nuitka --onefile \\`
+`nuitka --onefile \
 
-`\--windows-icon-from-ico=ico\\ADCIcon.ico \\`
+\--windows-icon-from-ico=ico\ADCIcon.ico \
 
-`\--include-data-file=libcrypto-3.dll=libcrypto-3.dll \\`
+\--include-data-file=libcrypto-3.dll=libcrypto-3.dll \
 
-`\--include-data-file=tcl86t.dll=tcl86t.dll \\`
+\--include-data-file=tcl86t.dll=tcl86t.dll \
 
-`"ADC Archiver 1.2.0.py"`
+"ADC Archiver 1.2.0.py"`
 
 **5. Advanced Compilation Options**
 
@@ -114,7 +114,7 @@ Ensure all compilers are in your PATH.
 
 **5.2 Using Ccache for Faster Builds**
 
-`set PATH=C:\\path\\to\\ccache;%PATH%`
+`set PATH=C:\path\to\ccache;%PATH%`
 
 **6. Packaging and Distribution**
 
