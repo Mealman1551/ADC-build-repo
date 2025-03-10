@@ -1,0 +1,70 @@
+[2024-11-14T19:36:09.557814 17800] === CCACHE 4.8.2 STARTED =========================================
+[2024-11-14T19:36:09.557947 17800] Configuration file: C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache\ccache.conf
+[2024-11-14T19:36:09.557973 17800] System configuration file: C:\ProgramData\ccache\ccache.conf
+[2024-11-14T19:36:09.557973 17800] Config: (default) absolute_paths_in_stderr = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) base_dir = 
+[2024-11-14T19:36:09.557973 17800] Config: (environment) cache_dir = C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache
+[2024-11-14T19:36:09.557973 17800] Config: (default) compiler = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) compiler_check = mtime
+[2024-11-14T19:36:09.557973 17800] Config: (default) compiler_type = auto
+[2024-11-14T19:36:09.557973 17800] Config: (default) compression = true
+[2024-11-14T19:36:09.557973 17800] Config: (default) compression_level = 0
+[2024-11-14T19:36:09.557973 17800] Config: (default) cpp_extension = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) debug = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) debug_dir = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) depend_mode = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) direct_mode = true
+[2024-11-14T19:36:09.557973 17800] Config: (default) disable = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) extra_files_to_hash = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) file_clone = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) hard_link = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) hash_dir = true
+[2024-11-14T19:36:09.557973 17800] Config: (default) ignore_headers_in_manifest = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) ignore_options = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) inode_cache = true
+[2024-11-14T19:36:09.557973 17800] Config: (default) keep_comments_cpp = false
+[2024-11-14T19:36:09.557973 17800] Config: (environment) log_file = D:\Zelfgemaakt, en meer\Projecten\Adc\Windows\ADCARC~1.ONE\ccache-18888.txt
+[2024-11-14T19:36:09.557973 17800] Config: (default) max_files = 0
+[2024-11-14T19:36:09.557973 17800] Config: (default) max_size = 5.0 GiB
+[2024-11-14T19:36:09.557973 17800] Config: (default) msvc_dep_prefix = Note: including file:
+[2024-11-14T19:36:09.557973 17800] Config: (default) namespace = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) path = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) pch_external_checksum = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) prefix_command = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) prefix_command_cpp = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) read_only = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) read_only_direct = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) recache = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) remote_only = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) remote_storage = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) reshare = false
+[2024-11-14T19:36:09.557973 17800] Config: (default) run_second_cpp = true
+[2024-11-14T19:36:09.557973 17800] Config: (environment) sloppiness = include_file_ctime, include_file_mtime
+[2024-11-14T19:36:09.557973 17800] Config: (default) stats = true
+[2024-11-14T19:36:09.557973 17800] Config: (default) stats_log = 
+[2024-11-14T19:36:09.557973 17800] Config: (default) temporary_dir = C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/tmp
+[2024-11-14T19:36:09.557973 17800] Config: (default) umask = 
+[2024-11-14T19:36:09.558094 17800] Command line: C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\ccache.exe C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\gcc.exe -o static_src\OnefileBootstrap.o -c -std=c11 -flto=8 -fuse-linker-plugin -fno-fat-lto-objects -fvisibility=hidden -fwrapv -pipe -fpartial-inlining -ftrack-macro-expansion=0 -Wno-deprecated-declarations -fno-var-tracking -Wno-misleading-indentation -fcompare-debug-second -O3 -D_WIN32_WINNT=0x0501 -D__NUITKA_NO_ASSERT__ -D_NUITKA_ONEFILE_MODE -IC:\Users\natha\AppData\Local\Programs\Python\PYTHON~1\Lib\SITE-P~1\nuitka\build\inline_copy\zlib -I. -IC:\Users\natha\AppData\Local\Programs\Python\PYTHON~1\Lib\SITE-P~1\nuitka\build\include -IC:\Users\natha\AppData\Local\Programs\Python\PYTHON~1\Lib\SITE-P~1\nuitka\build\static_src -IC:\Users\natha\AppData\Local\Programs\Python\PYTHON~1\Lib\SITE-P~1\nuitka\build\inline_copy\zstd static_src\OnefileBootstrap.c
+[2024-11-14T19:36:09.566447 17800] Hostname: Laptop-Nathan
+[2024-11-14T19:36:09.566475 17800] Working directory: D:/Zelfgemaakt, en meer/Projecten/Adc/Windows/ADCARC~1.ONE
+[2024-11-14T19:36:09.566500 17800] Compiler: C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\gcc.exe
+[2024-11-14T19:36:09.566512 17800] Compiler type: gcc
+[2024-11-14T19:36:09.567004 17800] Source file: static_src\OnefileBootstrap.c
+[2024-11-14T19:36:09.567023 17800] Object file: static_src\OnefileBootstrap.o
+[2024-11-14T19:36:09.567283 17800] Trying direct lookup
+[2024-11-14T19:36:09.567690 17800] Manifest key: 1ff6fpak9san1rsc6k193sb35pkjelbuo
+[2024-11-14T19:36:09.574163 17800] Retrieved 1ff6fpak9san1rsc6k193sb35pkjelbuo from local storage (C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/1/f/f6fpak9san1rsc6k193sb35pkjelbuoM)
+[2024-11-14T19:36:09.683840 17800] Got result key from manifest
+[2024-11-14T19:36:09.683874 17800] Result key: 9247d1mi50tfj6etjpcij90u233imptpc
+[2024-11-14T19:36:09.691441 17800] Retrieved 9247d1mi50tfj6etjpcij90u233imptpc from local storage (C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/9/2/47d1mi50tfj6etjpcij90u233imptpcR)
+[2024-11-14T19:36:09.692511 17800] Reading embedded entry #0 .o (592339 bytes)
+[2024-11-14T19:36:09.692534 17800] Writing to static_src\OnefileBootstrap.o
+[2024-11-14T19:36:09.692983 17800] Succeeded getting cached result
+[2024-11-14T19:36:09.693164 17800] Result: direct_cache_hit
+[2024-11-14T19:36:09.693181 17800] Result: local_storage_hit
+[2024-11-14T19:36:09.693193 17800] Result: local_storage_read_hit
+[2024-11-14T19:36:09.693204 17800] Result: local_storage_read_hit
+[2024-11-14T19:36:09.693236 17800] Acquiring C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/8/8/stats.lock
+[2024-11-14T19:36:09.694262 17800] Acquired C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/8/8/stats.lock
+[2024-11-14T19:36:09.700965 17800] Releasing C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/8/8/stats.lock
+[2024-11-14T19:36:09.701201 17800] Released C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache/8/8/stats.lock
