@@ -1,151 +1,120 @@
-# ADC compile from scratch
+# ADC Archiver
 
-Welcome to the **ADC-compile-from-scratch** repository! This repository includes all the necessary files for manually compiling the full ADC 1.2.0.exe without needing to use the setup from the main branch.
+Welcome to the **ADC-compile-from-scratch** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.2.0 executable without relying on precompiled setups.
 
-### Overview
+## Overview
 
-This repository contains the **Nuitka** files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups and/or precompiled executables.
+This repository contains the source code and resources required to compile the ADC Archiver 1.2.0 from scratch. It is intended for users who prefer to build the software manually.
 
-**Please Note:**  
-- This repository does not include the EXE files or precompiled setups. It is solely intended for compiling the software from scratch using the following resources:
-    - C
-    - H
-    - O
-    - Python files (`.py`, `.pyw`, `.pyd`)
-    - DBlite/SQLite
-    - BIN
-    - CONST
-    - TK and TCL files
+**Please Note:**
+- This repository does not include precompiled executables or installers. It is solely intended for manual compilation using the provided source files.
 
-### Prerequisites
+## Prerequisites
 
-Before you start compiling, you need to have the following installed:
+Before starting the compilation process, ensure you have the following installed:
 
-- **Python 3.12.x** (with the Nuitka library)
-- **C** (for compiling C-based files)
-- **Python Tkinter** (for GUI-related tasks)
-- **DBlite/SQLite** (for database operations)
-- **JavaScript** (to modify certain files if needed)
+- **Python 3.12.x**: Download from the [official Python website](https://www.python.org/downloads/).
+- **Nuitka**: A Python-to-C compiler. Install using:
+  ```sh
+  pip install nuitka
+  ```
+- **C/C++ Compiler**:
+  - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](http://www.mingw.org/).
+  - **Linux**: GCC (`sudo apt install build-essential`).
+- **SCons**: A software construction tool. Install using:
+  ```sh
+  pip install scons
+  ```
+- **ccache** (optional): For caching compiled files to speed up subsequent builds.
 
-### Setup
+## Project Structure
 
-1. Install **Python 3.12.x** from the [official Python website](https://www.python.org/downloads/). (Python 3.12.x recommended)
-2. Install the **Nuitka library** for Python (refer to the [Nuitka documentation](https://nuitka.readthedocs.io/) for installation steps).
-3. Ensure that **C**, **Tkinter**, **DBlite/SQLite**, and **JavaScript** are installed and properly configured on your system.
+The repository includes the following key files and directories:
 
-### Compiling from Scratch
+- `ADC Archiver 1.2.0.py`: Main Python source code.
+- `ico/`: Directory containing icon files.
+- `setup/`: Directory with setup-related scripts and configurations.
+- `static_src/`: Directory containing static source files.
+- Additional resource directories: `banner/`, `jpg/`, `png/`, `svg/`, `webp/`.
 
-To compile the software manually, you will need to use the Python source code file:
+## Setting Up the Environment
 
-- **`ADC Archiver 1.2.0.py`** (Full source code)
+1. **Install Required Libraries**:
+   Ensure `nuitka` and `scons` are installed:
+   ```sh
+   pip install nuitka scons
+   ```
 
-## Compiling instructions
+2. **Verify Compiler Setup**:
+   Confirm that your C/C++ compiler is correctly installed and accessible in your system's PATH:
+   ```sh
+   gcc --version
+   ```
+   If using `ccache`, verify its installation:
+   ```sh
+   ccache --version
+   ```
 
-**Compiling Instructions for ADC Archiver 1.2.0**
+## Compilation Steps
 
-This document provides detailed instructions on how to compile ADC Archiver 1.2.0 using Nuitka, including prerequisites, step-by-step commands, troubleshooting, and advanced options.
+1. **Download the source code and compilation files**:
 
-**Table of Contents**
+### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.zip)
 
-- 1. Prerequisites
-- 2. Project Structure
-- 3. Setting Up the Environment
-- 4. Compilation Steps
-- 5. Advanced Compilation Options
-- 6. Packaging and Distribution
-- 7. Troubleshooting
-- 8. Download of source code and files
-- 9. Additional Resources
+### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.tar.gz)
 
-**1. Prerequisites**
 
-**1.1 Software Requirements**
+2. **Basic Compilation Command**:
+   Use Nuitka to compile the Python script into a standalone executable:
+   ```sh
+   nuitka --onefile --windows-icon-from-ico=ico/ADCIcon.ico "ADC Archiver 1.2.0.py"
+   ```
+   This command generates an executable in the current directory.
 
-- **Python 3.12.x**
-- **Nuitka** (`pip install nuitka`)
-- **C/C++ Compiler**
-  - **Windows**: Microsoft Build Tools or MinGW
-  - **Linux**: GCC (`sudo apt install build-essential`)
-- **SCons** (`pip install scons`)
-- **ccache** (optional, for caching compiled files)
+3. **Including Additional Files**:
+   If the application requires additional DLLs or resources, include them using the `--include-data-file` option:
+   ```sh
+   nuitka --onefile \
+   --windows-icon-from-ico=ico/ADCIcon.ico \
+   --include-data-file=libcrypto-3.dll=libcrypto-3.dll \
+   --include-data-file=tcl86t.dll=tcl86t.dll \
+   "ADC Archiver 1.2.0.py"
+   ```
 
-**2. System Requirements**
+## Advanced Compilation Options
 
-- Minimum 4 GB RAM (8 GB Recommended)
-- Sufficient disk space for temporary compilation files
+- **Optimizing for Performance**:
+  Enable link-time optimization and follow all imports:
+  ```sh
+  nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"
+  ```
 
-**3. Setting Up the Environment**
+- **Using ccache for Faster Builds**:
+  Configure your environment to use `ccache`:
+  ```sh
+  set PATH=C:\path\to\ccache;%PATH%  # On Windows
+  export PATH=/path/to/ccache:$PATH  # On Linux
+  ```
 
-**3.1 Install Required Libraries**
+## Packaging and Distribution
 
-`pip install nuitka scons`
+After successful compilation, test the executable to ensure it functions correctly:
+```sh
+./ADC_Archiver_1.2.0.exe
+```
+To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/), [Inno Setup](https://jrsoftware.org/isinfo.php), or [InstallForge](https://installforge.net/).
 
-**3.2 Verify Compiler Setup**
+## Troubleshooting
 
-`gcc --version`
+- **Missing DLLs**: Ensure all required libraries are included in the compilation command and are accessible at runtime.
+- **Compilation Warnings or Errors**: Review the `scons-report.txt` file for detailed logs and address any issues as indicated.
 
-`ccache --version`
+## Additional Resources
 
-Ensure all compilers are in your PATH.
+- [Nuitka User Manual](https://nuitka.net/doc/user-manual.html)
+- [SCons Documentation](https://scons.org/doc.html)
+- [Python 3.12 Documentation](https://docs.python.org/3.12/)
 
-**4. Compilation Steps**
-
-**4.1 Basic Compilation Command**
-
-`nuitka --onefile --windows-icon-from-ico=ico\ADCIcon.ico "ADC Archiver 1.2.0.py"`
-
-**4.2 Including Additional Files**
-
-`nuitka --onefile \
-
-\--windows-icon-from-ico=ico\ADCIcon.ico \
-
-\--include-data-file=libcrypto-3.dll=libcrypto-3.dll \
-
-\--include-data-file=tcl86t.dll=tcl86t.dll \
-
-"ADC Archiver 1.2.0.py"`
-
-**5. Advanced Compilation Options**
-
-**5.1 Optimizing for Performance**
-
-`nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"`
-
-**5.2 Using Ccache for Faster Builds**
-
-`set PATH=C:\path\to\ccache;%PATH%`
-
-**6. Packaging and Distribution**
-
-**6.1 Testing the Executable**
-
-`ADC Archiver 1.2.0.exe`
-
-**6.2 Creating an Installer**
-
-You can use NSIS, Inno Setup, or InstallForge to create a setup wizard.
-
-**7. Troubleshooting**
-
-**7.1 Common Errors**
-
-- **Missing DLLs**: Verify that all required libraries are in the correct directories.
-- **Compilation Warnings**: Check scons-report.txt for detailed logs.
-
-**8 Download**
-
-## [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.zip)
-
-## [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode.tar.gz)
-
-**9. Additional Resources**
-
-- [Nuitka Documentation](https://nuitka.net/user-documentation/)
-- [SCons Documentation](https://scons.org/documentation.html)
-- [Python 3.12 Downloads](https://www.python.org/downloads/release/python-3129/)
-- [Tcl/TK Documentation](https://www.tcl-lang.org/doc/)
-
-For any further questions or issues, you can create an issue on this repo!
+For further questions or issues, please create an issue in this repository.
 
 (c) 2025 Mealman1551
