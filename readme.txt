@@ -1,62 +1,39 @@
-ADC Compile from Scratch
+Compilation Steps
 
-Welcome to the ADC-compile-from-scratch repository! This repository includes all the necessary files for manually compiling a setup or MSI without needing to use the setup from the main branch.
+    Download the source code and compilation files:
 
-Overview
+Download Zip
+Download Tar.gz
 
-This repository contains the Nukita files required to compile an EXE package from scratch. It is designed for users who want to build the software manually without relying on precompiled setups and/or precompiled executables.
+Basic Compilation Command: Use Nuitka to compile the Python script into a standalone executable:
 
-Please Note:
+nuitka --onefile --windows-icon-from-ico=ico/ADCIcon.ico "ADC Archiver 1.2.0.py"
 
-This repository does not include the EXE files or precompiled setups. It is solely intended for compiling the software from scratch using the following resources:
+This command generates an executable in the current directory.
 
-C
+Including Additional Files: If the application requires additional DLLs or resources, include them using the --include-data-file option:
 
-H
+nuitka --onefile \
+--windows-icon-from-ico=ico/ADCIcon.ico \
+--include-data-file=libcrypto-3.dll=libcrypto-3.dll \
+--include-data-file=tcl86t.dll=tcl86t.dll \
+"ADC Archiver 1.2.0.py"
 
-O
+Advanced Compilation Options
 
-Python files (.py, .pyw, .pyd)
+Optimizing for Performance: Enable link-time optimization and follow all imports:
 
-DBlite/SQLite
+nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"
 
-BIN
+Using ccache for Faster Builds: Configure your environment to use ccache:
 
-CONST
+set PATH=C:\path\to\ccache;%PATH%  # On Windows
+export PATH=/path/to/ccache:$PATH  # On Linux
 
-TK and TCL files
+Packaging and Distribution
 
-Prerequisites
+After successful compilation, test the executable to ensure it functions correctly:
 
-Before you start compiling, you need to have the following installed:
+./ADC_Archiver_1.2.0.exe
 
-Python 3 (with the Nukita library)
-
-C (for compiling C-based files)
-
-Python Tkinter (for GUI-related tasks)
-
-DBlite/SQLite (for database operations)
-
-JavaScript (to modify certain files if needed)
-
-Setup
-
-Install Python 3 from the official Python website (Python 3.12.x recommended).
-
-Install the Nukita library for Python (refer to the Nukita documentation for installation steps).
-
-Ensure that C, Tkinter, DBlite/SQLite, and JavaScript are installed and properly configured on your system.
-
-Compiling from Scratch
-
-To compile the software manually, you will need to use the Python source code file:
-
-ADC Archiver 1.2.0.py (Full source code)
-
-For detailed compilation instructions, please refer to the "Compiling Instructions" document online at the ADC-compile-from-scratch repo.
-
-For any further questions or issues, you can create an issue on the ADC-compile-from-scratch repo online!
-
-(c) 2025 Mealman1551
-
+To distribute the application, consider creating an installer using tools like NSIS or Inno Setup
