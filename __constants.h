@@ -1,7 +1,7 @@
 #ifndef __NUITKA_GLOBAL_CONSTANTS_H__
 #define __NUITKA_GLOBAL_CONSTANTS_H__
 
-extern PyObject *global_constants[100];
+extern PyObject *global_constants[106];
 // ()
 #define const_tuple_empty global_constants[0]
 // {}
@@ -108,102 +108,112 @@ extern PyObject *global_constants[100];
 #define const_str_plain_read global_constants[50]
 // 'rb'
 #define const_str_plain_rb global_constants[51]
+// 'r'
+#define const_str_plain_r global_constants[52]
+// 'w'
+#define const_str_plain_w global_constants[53]
+// 'b'
+#define const_str_plain_b global_constants[54]
 // '/'
-#define const_str_slash global_constants[52]
+#define const_str_slash global_constants[55]
 // '\\'
-#define const_str_backslash global_constants[53]
+#define const_str_backslash global_constants[56]
 // 'path'
-#define const_str_plain_path global_constants[54]
+#define const_str_plain_path global_constants[57]
 // 'basename'
-#define const_str_plain_basename global_constants[55]
+#define const_str_plain_basename global_constants[58]
 // 'dirname'
-#define const_str_plain_dirname global_constants[56]
+#define const_str_plain_dirname global_constants[59]
 // 'abspath'
-#define const_str_plain_abspath global_constants[57]
+#define const_str_plain_abspath global_constants[60]
 // 'isabs'
-#define const_str_plain_isabs global_constants[58]
+#define const_str_plain_isabs global_constants[61]
 // 'normpath'
-#define const_str_plain_normpath global_constants[59]
+#define const_str_plain_normpath global_constants[62]
 // 'exists'
-#define const_str_plain_exists global_constants[60]
+#define const_str_plain_exists global_constants[63]
 // 'isdir'
-#define const_str_plain_isdir global_constants[61]
+#define const_str_plain_isdir global_constants[64]
 // 'isfile'
-#define const_str_plain_isfile global_constants[62]
+#define const_str_plain_isfile global_constants[65]
 // 'listdir'
-#define const_str_plain_listdir global_constants[63]
+#define const_str_plain_listdir global_constants[66]
+// 'stat'
+#define const_str_plain_stat global_constants[67]
+// 'lstat'
+#define const_str_plain_lstat global_constants[68]
+// 'close'
+#define const_str_plain_close global_constants[69]
 // 'getattr'
-#define const_str_plain_getattr global_constants[64]
+#define const_str_plain_getattr global_constants[70]
 // '__cached__'
-#define const_str_plain___cached__ global_constants[65]
+#define const_str_plain___cached__ global_constants[71]
 // 'print'
-#define const_str_plain_print global_constants[66]
+#define const_str_plain_print global_constants[72]
 // 'end'
-#define const_str_plain_end global_constants[67]
+#define const_str_plain_end global_constants[73]
 // 'file'
-#define const_str_plain_file global_constants[68]
+#define const_str_plain_file global_constants[74]
 // 'bytes'
-#define const_str_plain_bytes global_constants[69]
+#define const_str_plain_bytes global_constants[75]
 // '.'
-#define const_str_dot global_constants[70]
+#define const_str_dot global_constants[76]
 // '_'
-#define const_str_underscore global_constants[71]
+#define const_str_underscore global_constants[77]
 // '__loader__'
 #define const_str_plain___loader__ global_constants[29]
 // 'send'
-#define const_str_plain_send global_constants[72]
+#define const_str_plain_send global_constants[78]
 // 'throw'
-#define const_str_plain_throw global_constants[73]
-// 'close'
-#define const_str_plain_close global_constants[74]
+#define const_str_plain_throw global_constants[79]
 // 'site'
-#define const_str_plain_site global_constants[75]
+#define const_str_plain_site global_constants[80]
 // 'type'
-#define const_str_plain_type global_constants[76]
+#define const_str_plain_type global_constants[81]
 // 'len'
-#define const_str_plain_len global_constants[77]
+#define const_str_plain_len global_constants[82]
 // 'range'
 #define const_str_plain_range global_constants[34]
 // 'repr'
-#define const_str_plain_repr global_constants[78]
+#define const_str_plain_repr global_constants[83]
 // 'int'
-#define const_str_plain_int global_constants[79]
+#define const_str_plain_int global_constants[84]
 // 'iter'
-#define const_str_plain_iter global_constants[80]
+#define const_str_plain_iter global_constants[85]
 // '__spec__'
-#define const_str_plain___spec__ global_constants[81]
+#define const_str_plain___spec__ global_constants[86]
 // '_initializing'
-#define const_str_plain__initializing global_constants[82]
+#define const_str_plain__initializing global_constants[87]
 // 'parent'
-#define const_str_plain_parent global_constants[83]
+#define const_str_plain_parent global_constants[88]
 // 'types'
-#define const_str_plain_types global_constants[84]
+#define const_str_plain_types global_constants[89]
 // 'ascii'
-#define const_str_plain_ascii global_constants[85]
+#define const_str_plain_ascii global_constants[90]
 // 'punycode'
-#define const_str_plain_punycode global_constants[86]
+#define const_str_plain_punycode global_constants[91]
 // '__main__'
-#define const_str_plain___main__ global_constants[87]
+#define const_str_plain___main__ global_constants[92]
 // 'as_file'
-#define const_str_plain_as_file global_constants[88]
+#define const_str_plain_as_file global_constants[93]
 // 'register'
-#define const_str_plain_register global_constants[89]
+#define const_str_plain_register global_constants[94]
 // '__class_getitem__'
-#define const_str_plain___class_getitem__ global_constants[90]
+#define const_str_plain___class_getitem__ global_constants[95]
 // 'reconfigure'
-#define const_str_plain_reconfigure global_constants[91]
+#define const_str_plain_reconfigure global_constants[96]
 // 'encoding'
-#define const_str_plain_encoding global_constants[92]
+#define const_str_plain_encoding global_constants[97]
 // 'line_buffering'
-#define const_str_plain_line_buffering global_constants[93]
+#define const_str_plain_line_buffering global_constants[98]
 // '__match_args__'
-#define const_str_plain___match_args__ global_constants[94]
+#define const_str_plain___match_args__ global_constants[99]
 // '__aenter__'
-#define const_str_plain___aenter__ global_constants[95]
+#define const_str_plain___aenter__ global_constants[100]
 // '__aexit__'
-#define const_str_plain___aexit__ global_constants[96]
+#define const_str_plain___aexit__ global_constants[101]
 // 'split'
-#define const_str_plain_split global_constants[97]
+#define const_str_plain_split global_constants[102]
 // 'fileno'
-#define const_str_plain_fileno global_constants[98]
+#define const_str_plain_fileno global_constants[103]
 #endif

@@ -1,15 +1,15 @@
 AS=as
-CC="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\ccache.exe" "C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\gcc.exe"
+CC="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin\ccache.exe" "C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin\gcc.exe"
 CCACHE_DIR=C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\ccache
-CCACHE_LOGFILE=D:\Zelfgemaakt, en meer\Projecten\Adc\Windows\ADCARC~1.ONE\ccache-18888.txt
+CCACHE_LOGFILE=C:\Users\natha\ADCARC~1.BUI\ccache-14776.txt
 CCCOM=$CC -o $TARGET -c $CFLAGS $CCFLAGS $_CCCOMCOM $SOURCES
 CFILESUFFIX=.c
-CPPDEFINES=['_WIN32_WINNT=0x0501', '__NUITKA_NO_ASSERT__', '_NUITKA_ONEFILE_MODE']
+CPPDEFINES=['_WIN32_WINNT=0x0601', '__NUITKA_NO_ASSERT__', '_NUITKA_CONSTANTS_FROM_RESOURCE', '_NUITKA_FROZEN=0', '_NUITKA_EXE', '_NUITKA_FILE_REFERENCE_ORIGINAL_MODE']
 CPPDEFPREFIX=-D
 CPPDEFSUFFIX=
-CPPPATH=['C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\inline_copy\\zlib', '.', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\include', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\static_src', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\inline_copy\\zstd']
+CPPPATH=['C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\inline_copy\\zlib', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\include', '.', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\include', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\static_src', 'C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\Lib\\SITE-P~1\\nuitka\\build\\inline_copy\\libbacktrace']
 CPPSUFFIXES=['.c', '.C', '.cxx', '.cpp', '.c++', '.cc', '.h', '.H', '.hxx', '.hpp', '.hh', '.F', '.fpp', '.FPP', '.m', '.mm', '.S', '.spp', '.SPP', '.sx']
-CXX="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\ccache.exe" "C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\gcc.exe"
+CXX="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin\ccache.exe" "C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin\gcc.exe"
 CXXCOM=$CXX -o $TARGET -c $CXXFLAGS $CCFLAGS $_CCCOMCOM $SOURCES
 CXXFILESUFFIX=.cc
 HOST_ARCH=x86_64
@@ -28,13 +28,13 @@ LIBDIRPREFIX=-L
 LIBDIRSUFFIX=
 LIBLINKPREFIX=-l
 LIBLINKSUFFIX=
-LIBPATH=[]
+LIBPATH=['C:\\Users\\natha\\AppData\\Local\\Programs\\Python\\PYTHON~1\\libs']
 LIBPREFIX=lib
 LIBPREFIXES=['$LIBPREFIX']
-LIBS=[]
+LIBS=['m', 'python312']
 LIBSUFFIX=.a
 LIBSUFFIXES=['$LIBSUFFIX']
-LINK="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin\gcc.exe"
+LINK="C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin\gcc.exe"
 LINKCOM=$LINK -o $TARGET $LINKFLAGS $__RPATH @".\@link_input.txt" $_LIBDIRFLAGS $_LIBFLAGS
 OBJPREFIX=
 OBJSUFFIX=.o
@@ -73,7 +73,5 @@ clang_mode=False
 msvc_mode=False
 mingw_mode=True
 clangcl_mode=False
-PATH=C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\13.2.0-16.0.6-11.0.1-msvcrt-r1\mingw64\bin;C:\Program Files\PowerShell\7;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files\PowerShell\7\;C:\Users\natha\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\natha\AppData\Local\Programs\Python\Python312\;C:\Users\natha\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\natha\AppData\Local\Programs\Python\Python313\;C:\Users\natha\AppData\Local\Programs\Python\Launcher\;C:\Users\natha\AppData\Local\UniGetUI\Chocolatey\bin;C:\Users\natha\scoop\shims;C:\Users\natha\AppData\Local\Programs\WingetUI\choco-cli\bin;C:\Users\natha\AppData\Local\Microsoft\WindowsApps;D:\Visual Studio Code\Microsoft VS Code\bin;C:\Users\natha\AppData\Local\Microsoft\WinGet\Packages\samlab-ws.SnappyDriverInstaller_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\natha\AppData\Local\Microsoft\WindowsApps;C:\Users\natha\AppData\Local\Microsoft\WinGet\Links;C:\Users\natha\AppData\Local\GitHubDesktop\bin
-TARGET=D:\Zelfgemaakt, en meer\Projecten\Adc\Windows\ADC Archiver 1.2.0.exe
-
-C# C++ C PYTHON JAVA JAVASCRIPT JSON JAR POWERSHELL CALK BASH NODE.JS SWIFT KOTLIN HTML CSS 
+PATH=C:\Users\natha\AppData\Local\Nuitka\Nuitka\Cache\DOWNLO~1\gcc\x86_64\14.2.0posix-19.1.1-12.0.0-msvcrt-r2\mingw64\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\PowerShell\7\;C:\ffmpeg\ffmpeg-7.1-full_build\bin;C:\Users\natha\AppData\Local\Programs\oh-my-posh\bin\;C:\Users\natha\AppData\Local\UniGetUI\Chocolatey\bin;C:\Users\natha\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\natha\AppData\Local\Programs\Python\Python313\;C:\Users\natha\AppData\Local\Microsoft\WindowsApps;C:\Users\natha\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\natha\AppData\Local\Microsoft\WinGet\Links;C:\Users\natha\AppData\Local\GitHubDesktop\bin;C:\ffmpeg\ff;C:\Program Files\Git\cmd;C:\Users\natha\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\natha\AppData\Local\Programs\Python\Python312\;C:\Users\natha\AppData\Local\Programs\Python\Launcher\;C:\Users\natha\AppData\Local\UniGetUI\Chocolatey\bin;C:\Users\natha\AppData\Local\Microsoft\WindowsApps;C:\Users\natha\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\natha\AppData\Local\Microsoft\WinGet\Links;C:\Users\natha\AppData\Local\GitHubDesktop\bin
+TARGET=C:\Users\natha\ADC Archiver 1.2.0.exe

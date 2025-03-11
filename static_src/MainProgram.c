@@ -1,4 +1,4 @@
-//     Copyright 2024, Kay Hayen, mailto:kay.hayen@gmail.com find license text at end of file
+//     Copyright 2025, Kay Hayen, mailto:kay.hayen@gmail.com find license text at end of file
 
 /* The main program for a compiled program.
  *
@@ -8,12 +8,16 @@
  * For multiprocessing, joblib, loky there is things here that will
  * allow them to fork properly with their intended entry points.
  *
- * spell-checker: ignore joblib loky
+ * spell-checker: ignore joblib loky anyio platlibdir
  *
  */
 
 #if defined(_WIN32)
 #include <windows.h>
+#endif
+
+#if defined(__APPLE__)
+#include <unistd.h>
 #endif
 
 #include "nuitka/prelude.h"
@@ -32,6 +36,7 @@
 #define SYSFLAG_BYTES_WARNING 0
 #define SYSFLAG_UTF8 0
 #define SYSFLAG_UNBUFFERED 0
+#define SYSFLAG_DONTWRITEBYTECODE 0
 #define NUITKA_MAIN_MODULE_NAME "__main__"
 #define NUITKA_MAIN_IS_PACKAGE_BOOL false
 #define _NUITKA_ATTACH_CONSOLE_WINDOW 1
@@ -49,11 +54,31 @@
 #define NUITKA_STANDARD_HANDLES_EARLY 0
 #endif
 
-#if defined(_WIN32) && defined(_NUITKA_ATTACH_CONSOLE_WINDOW)
+#if defined(_WIN32) && (defined(_NUITKA_ATTACH_CONSOLE_WINDOW) || defined(_NUITKA_HIDE_CONSOLE_WINDOW))
 #include "HelpersConsole.c"
 #endif
 
-extern PyCodeObject *codeobj_main;
+// We are open to having this defined otherwise, this is a default only.
+#if defined(_WIN32) && defined(NUITKA_COMPANY_NAME) && defined(NUITKA_PRODUCT_NAME) &&                                 \
+    !defined(NUITKA_APP_MODEL_USER_ID)
+#define NUITKA_APP_MODEL_USER_ID L"" NUITKA_COMPANY_NAME L"." NUITKA_PRODUCT_NAME
+#endif
+
+#if defined(_WIN32) && defined(NUITKA_APP_MODEL_USER_ID)
+typedef HRESULT(WINAPI *pfnSetCurrentProcessExplicitAppUserModelID)(PCWSTR AppID);
+
+static void setCurrentProcessExplicitAppUserModelID(wchar_t const *app_user_model_id) {
+    pfnSetCurrentProcessExplicitAppUserModelID fnSetCurrentProcessExplicitAppUserModelID =
+        (pfnSetCurrentProcessExplicitAppUserModelID)GetProcAddress(GetModuleHandleA("Shell32.dll"),
+                                                                   "SetCurrentProcessExplicitAppUserModelID");
+
+    if (fnSetCurrentProcessExplicitAppUserModelID != NULL) {
+        fnSetCurrentProcessExplicitAppUserModelID(app_user_model_id);
+    }
+}
+#endif
+
+extern PyCodeObject *code_objects_main;
 
 /* For later use in "Py_GetArgcArgv" we expose the needed value  */
 #if PYTHON_VERSION >= 0x300
@@ -67,7 +92,7 @@ static int orig_argc;
 extern void copyFrozenModulesTo(struct _frozen *destination);
 
 // The original frozen modules list.
-#if PYTHON_VERSION < 0x340
+#if PYTHON_VERSION < 0x300
 static struct _frozen *old_frozen = NULL;
 #else
 static struct _frozen const *old_frozen = NULL;
@@ -369,8 +394,12 @@ static int loky_joblib_parent_pid_arg = 0;
 #else
 static bool is_joblib_popen_loky_posix = false;
 #endif
+
 // This is a joblib resource tracker if not -1
 static int loky_resource_tracker_arg = -1;
+
+// This is a "anyio.to_process" fork
+static bool is_anyio_to_process = false;
 
 // Parse the command line parameters to decide if it's a multiprocessing usage
 // or something else special.
@@ -381,7 +410,7 @@ static void setCommandLineParameters(int argc, wchar_t **argv) {
 #endif
 #ifdef _NUITKA_EXPERIMENTAL_DEBUG_SELF_FORKING
 #if _NUITKA_NATIVE_WCHAR_ARGV == 0
-    printf("Commandline: ");
+    printf("Command line: ");
     for (int i = 0; i < argc; i++) {
         if (i != 0) {
             printf(" ");
@@ -390,7 +419,7 @@ static void setCommandLineParameters(int argc, wchar_t **argv) {
     }
     printf("\n");
 #else
-    wprintf(L"Commandline: '%lS' %d\n", GetCommandLineW(), argc);
+    wprintf(L"Command line: '%lS' %d\n", GetCommandLineW(), argc);
 #endif
 #endif
 
@@ -454,15 +483,21 @@ static void setCommandLineParameters(int argc, wchar_t **argv) {
 #endif
         }
 
-#if !defined(_WIN32)
         if ((i + 1 < argc) && (strcmpFilename(argv[i], FILENAME_EMPTY_STR "-m") == 0)) {
+#if !defined(_WIN32)
             // The joblib loky posix popen is launching like this.
             if (strcmpFilename(argv[i + 1], FILENAME_EMPTY_STR "joblib.externals.loky.backend.popen_loky_posix") == 0) {
                 is_joblib_popen_loky_posix = true;
                 break;
             }
-        }
 #endif
+
+            // The anyio.to_process module is launching like this.
+            if (strcmpFilename(argv[i + 1], FILENAME_EMPTY_STR "anyio.to_process") == 0) {
+                is_anyio_to_process = true;
+                break;
+            }
+        }
 
 #if !defined(_NUITKA_DEPLOYMENT_MODE) && !defined(_NUITKA_NO_DEPLOYMENT_SELF_EXECUTION)
         if ((strcmpFilename(argv[i], FILENAME_EMPTY_STR "-c") == 0) ||
@@ -725,6 +760,10 @@ static bool shallSetOutputHandleToNull(char const *name) {
     if (strcmp(name, "stderr") == 0) {
         return true;
     }
+#elif defined(NUITKA_FORCED_STDERR_PATH) || defined(NUITKA_FORCED_STDERR_NONE_BOOL)
+    if (strcmp(name, "stderr") == 0) {
+        return false;
+    }
 #endif
 
     PyObject *sys_std_handle = Nuitka_SysGetObject(name);
@@ -808,6 +847,7 @@ static void setInputOutputHandles(PyThreadState *tstate) {
 // better, and force it to utf-8, it often becomes platform IO for no good
 // reason.
 #if NUITKA_STANDARD_HANDLES_EARLY == 1 && PYTHON_VERSION >= 0x370
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Early handles.");
 #if defined(NUITKA_FORCED_STDOUT_PATH) || defined(NUITKA_FORCED_STDERR_PATH)
     PyObject *args = MAKE_DICT_EMPTY(tstate);
 
@@ -815,34 +855,40 @@ static void setInputOutputHandles(PyThreadState *tstate) {
     DICT_SET_ITEM(args, const_str_plain_line_buffering, Py_True);
 
 #if defined(NUITKA_FORCED_STDOUT_PATH)
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Forced stdout update.");
     {
         PyObject *sys_stdout = Nuitka_SysGetObject("stdout");
 
         PyObject *method = LOOKUP_ATTRIBUTE(tstate, sys_stdout, const_str_plain_reconfigure);
         CHECK_OBJECT(method);
 
-        PyObject *result = CALL_FUNCTION_WITH_KEYARGS(tstate, method, args);
+        PyObject *result = CALL_FUNCTION_WITH_KW_ARGS(tstate, method, args);
         CHECK_OBJECT(result);
     }
 #endif
 
 #if defined(NUITKA_FORCED_STDERR_PATH)
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Forced stderr update.");
     {
         PyObject *sys_stderr = Nuitka_SysGetObject("stderr");
+        if (sys_stderr != Py_None) {
+            PyObject *method = LOOKUP_ATTRIBUTE(tstate, sys_stderr, const_str_plain_reconfigure);
+            CHECK_OBJECT(method);
 
-        PyObject *method = LOOKUP_ATTRIBUTE(tstate, sys_stderr, const_str_plain_reconfigure);
-        CHECK_OBJECT(method);
-
-        PyObject *result = CALL_FUNCTION_WITH_KEYARGS(tstate, method, args);
-        CHECK_OBJECT(result);
+            PyObject *result = CALL_FUNCTION_WITH_KW_ARGS(tstate, method, args);
+            CHECK_OBJECT(result);
+        }
     }
 #endif
 
     Py_DECREF(args);
 #endif
+
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Done with early handles.");
 #endif
 
 #if NUITKA_STANDARD_HANDLES_EARLY == 0
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Late handles.");
 #if defined(NUITKA_FORCED_STDOUT_PATH)
     {
 #if defined(_WIN32)
@@ -885,22 +931,37 @@ static void setInputOutputHandles(PyThreadState *tstate) {
         PyObject *devnull_filename = Nuitka_String_FromString("/dev/null");
 #endif
 
+        NUITKA_PRINT_TRACE("setInputOutputHandles(): Considering stdin.");
+
         if (shallSetOutputHandleToNull("stdin")) {
+            NUITKA_PRINT_TRACE("setInputOutputHandles(): Set stdin to NULL file.");
+
             // CPython core requires stdin to be buffered due to methods usage, and it won't matter
             // here much.
             PyObject *stdin_file = BUILTIN_OPEN_SIMPLE(tstate, devnull_filename, "r", true, encoding);
+            CHECK_OBJECT(stdin_file);
 
             setStdinHandle(tstate, stdin_file);
         }
 
+        NUITKA_PRINT_TRACE("setInputOutputHandles(): Considering stdout.");
+
         if (shallSetOutputHandleToNull("stdout")) {
+            NUITKA_PRINT_TRACE("setInputOutputHandles(): Set stdout to NULL file.");
+
             PyObject *stdout_file = BUILTIN_OPEN_SIMPLE(tstate, devnull_filename, "w", false, encoding);
+            CHECK_OBJECT(stdout_file);
 
             setStdoutHandle(tstate, stdout_file);
         }
 
+        NUITKA_PRINT_TRACE("setInputOutputHandles(): Considering stderr.");
+
         if (shallSetOutputHandleToNull("stderr")) {
+            NUITKA_PRINT_TRACE("setInputOutputHandles(): Set stderr to NULL file.");
+
             PyObject *stderr_file = BUILTIN_OPEN_SIMPLE(tstate, devnull_filename, "w", false, encoding);
+            CHECK_OBJECT(stderr_file);
 
             setStderrHandle(tstate, stderr_file);
         }
@@ -909,10 +970,12 @@ static void setInputOutputHandles(PyThreadState *tstate) {
     }
 
 #if NUITKA_FORCED_STDOUT_NONE_BOOL
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Forcing stdout to None.");
     setStdoutHandle(tstate, Py_None);
 #endif
 
 #if NUITKA_FORCED_STDERR_NONE_BOOL
+    NUITKA_PRINT_TRACE("setInputOutputHandles(): Forcing stderr to None.");
     setStderrHandle(tstate, Py_None);
 #endif
 
@@ -1069,12 +1132,11 @@ static void changeStandardHandleTarget(int std_handle_id, FILE *std_handle, file
             abort();
         }
 
-        int int_res = dup2(os_handle, fileno(std_handle));
+        int _int_res = dup2(os_handle, fileno(std_handle));
 
-        // Without a console, this is normal.
-        if (int_res == -1) {
-            perror("_open_osfhandle");
-            abort();
+        if (_int_res == -1) {
+            // Note: Without a console, this is normal to get no file number to
+            // work with.
         }
 
         close(os_handle);
@@ -1137,6 +1199,14 @@ extern char const *getBinaryFilenameHostEncoded(bool resolve_symlinks);
 PyAPI_FUNC(void) PySys_AddWarnOption(const wchar_t *s);
 #endif
 
+// Preserve and provide the original argv[0] as recorded by the bootstrap stage.
+static environment_char_t const *original_argv0 = NULL;
+
+PyObject *getOriginalArgv0Object(void) {
+    assert(original_argv0 != NULL);
+    return Nuitka_String_FromFilename(original_argv0);
+}
+
 #ifdef _NUITKA_WINMAIN_ENTRY_POINT
 int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lpCmdLine, int nCmdShow) {
     /* MSVC, MINGW64 */
@@ -1145,6 +1215,9 @@ int __stdcall wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, wchar_t *lp
 #else
 #if defined(_WIN32)
 int wmain(int argc, wchar_t **argv) {
+#if defined(_NUITKA_HIDE_CONSOLE_WINDOW)
+    hideConsoleIfSpawned();
+#endif
 #else
 int main(int argc, char **argv) {
 #endif
@@ -1168,6 +1241,23 @@ int main(int argc, char **argv) {
     // cannot even output traces.
 #if defined(_WIN32) && defined(_NUITKA_ATTACH_CONSOLE_WINDOW)
     inheritAttachedConsole();
+#endif
+
+#if defined(_WIN32) && defined(NUITKA_APP_MODEL_USER_ID)
+    setCurrentProcessExplicitAppUserModelID(NUITKA_APP_MODEL_USER_ID);
+#endif
+
+#ifdef _NUITKA_MACOS_BUNDLE
+    {
+        char *current_dir = getcwd(NULL, -1);
+
+        if (strcmp(current_dir, "/") == 0) {
+            chdir(getBinaryDirectoryHostEncoded(false));
+            chdir("../../../");
+        }
+
+        free(current_dir);
+    }
 #endif
 
     // Set up stdout/stderr according to user specification.
@@ -1242,7 +1332,7 @@ int main(int argc, char **argv) {
     Py_InspectFlag = 0;
     Py_InteractiveFlag = 0;
     Py_OptimizeFlag = SYSFLAG_OPTIMIZE;
-    Py_DontWriteBytecodeFlag = 0;
+    Py_DontWriteBytecodeFlag = SYSFLAG_DONTWRITEBYTECODE;
     Py_NoUserSiteDirectory = SYSFLAG_NO_SITE;
     Py_IgnoreEnvironmentFlag = 0;
     Py_VerboseFlag = SYSFLAG_VERBOSE;
@@ -1285,8 +1375,25 @@ int main(int argc, char **argv) {
     /* Initial command line handling only. */
 
 // Make sure, we use the absolute program path for argv[0]
-#if !defined(_NUITKA_ONEFILE_MODE) && _NUITKA_NATIVE_WCHAR_ARGV == 0
+#if _NUITKA_NATIVE_WCHAR_ARGV == 0
+    original_argv0 = argv[0];
+#if !defined(_NUITKA_ONEFILE_MODE)
     argv[0] = (char *)getBinaryFilenameHostEncoded(false);
+#endif
+#endif
+
+#if defined(_NUITKA_ONEFILE_MODE)
+    {
+        environment_char_t const *parent_original_argv0 = getEnvironmentVariable("NUITKA_ORIGINAL_ARGV0");
+
+        // If forked from the parent process, it's set, otherwise fall back
+        // to standalone executable binary name as set above.
+        if (parent_original_argv0 != NULL) {
+            original_argv0 = strdupFilename(parent_original_argv0);
+
+            unsetEnvironmentVariable("NUITKA_ORIGINAL_ARGV0");
+        }
+    }
 #endif
 
 #if PYTHON_VERSION >= 0x300 && _NUITKA_NATIVE_WCHAR_ARGV == 0
@@ -1300,8 +1407,11 @@ orig_argv = argv;
 #endif
 
 // Make sure, we use the absolute program path for argv[0]
-#if !defined(_NUITKA_ONEFILE_MODE) && _NUITKA_NATIVE_WCHAR_ARGV == 1 && PYTHON_VERSION >= 0x300
+#if _NUITKA_NATIVE_WCHAR_ARGV == 1
+    original_argv0 = argv[0];
+#if PYTHON_VERSION >= 0x300 && !defined(_NUITKA_ONEFILE_MODE)
     orig_argv[0] = (wchar_t *)getBinaryFilenameWideChars(false);
+#endif
 #endif
 
     // Make sure the compiled path of Python is replaced.
@@ -1347,7 +1457,7 @@ orig_argv = argv;
 #endif
 
 // Workaround older Python not handling stream setup on redirected files properly.
-#if PYTHON_VERSION >= 0x340 && PYTHON_VERSION < 0x380
+#if PYTHON_VERSION >= 0x300 && PYTHON_VERSION < 0x380
     {
         char const *encoding = NULL;
 
@@ -1565,9 +1675,19 @@ orig_argv = argv;
 #endif
 #endif
 
+#if _NUITKA_PGO_PYTHON
+    // Profiling with our own Python PGO if enabled.
+    PGO_Initialize();
+#endif
+
 #if PYTHON_VERSION >= 0x300
     NUITKA_PRINT_TRACE("main(): Calling patchInspectModule().");
+
+// TODO: Python3.13 NoGIL: This is causing errors during bytecode import
+// that are unexplained.
+#if !defined(Py_GIL_DISABLED)
     patchInspectModule(tstate);
+#endif
 #endif
 
 #if PYTHON_VERSION >= 0x300 && SYSFLAG_NO_RANDOMIZATION == 1
@@ -1590,11 +1710,6 @@ orig_argv = argv;
 #if _NUITKA_PROFILE
     // Profiling with "vmprof" if enabled.
     startProfiling();
-#endif
-
-#if _NUITKA_PGO_PYTHON
-    // Profiling with our own Python PGO if enabled.
-    PGO_Initialize();
 #endif
 
     // Execute the main module unless plugins want to do something else. In case
@@ -1632,13 +1747,13 @@ orig_argv = argv;
         } else {
             char const *kw_keys[] = {"pipe_handle", "parent_pid"};
             PyObject *kw_values[] = {
-                PyLong_FromLong(loky_joblib_pipe_handle_arg),
-                PyLong_FromLong(loky_joblib_parent_pid_arg),
+                Nuitka_PyLong_FromLong(loky_joblib_pipe_handle_arg),
+                Nuitka_PyLong_FromLong(loky_joblib_parent_pid_arg),
             };
 
             PyObject *kw_args = MAKE_DICT_X_CSTR(kw_keys, kw_values, sizeof(kw_values) / sizeof(PyObject *));
 
-            CALL_FUNCTION_WITH_KEYARGS(tstate, main_function, kw_args);
+            CALL_FUNCTION_WITH_KW_ARGS(tstate, main_function, kw_args);
         }
 
         int exit_code = HANDLE_PROGRAM_EXIT(tstate);
@@ -1672,7 +1787,8 @@ orig_argv = argv;
         PyObject *main_function = PyObject_GetAttrString(resource_tracker_module, "main");
         CHECK_OBJECT(main_function);
 
-        CALL_FUNCTION_WITH_SINGLE_ARG(tstate, main_function, PyInt_FromLong(multiprocessing_resource_tracker_arg));
+        CALL_FUNCTION_WITH_SINGLE_ARG(tstate, main_function,
+                                      Nuitka_PyInt_FromLong(multiprocessing_resource_tracker_arg));
 
         int exit_code = HANDLE_PROGRAM_EXIT(tstate);
 
@@ -1687,11 +1803,23 @@ orig_argv = argv;
         PyObject *main_function = PyObject_GetAttrString(resource_tracker_module, "main");
         CHECK_OBJECT(main_function);
 
-        CALL_FUNCTION_WITH_SINGLE_ARG(tstate, main_function, PyInt_FromLong(loky_resource_tracker_arg));
+        CALL_FUNCTION_WITH_SINGLE_ARG(tstate, main_function, Nuitka_PyInt_FromLong(loky_resource_tracker_arg));
 
         int exit_code = HANDLE_PROGRAM_EXIT(tstate);
 
         NUITKA_PRINT_TRACE("main(): Calling 'joblib.externals.loky.backend.resource_tracker' Py_Exit.");
+        Py_Exit(exit_code);
+    } else if (unlikely(is_anyio_to_process)) {
+        PyObject *anyio_module = EXECUTE_MAIN_MODULE(tstate, "anyio.to_process", false);
+
+        PyObject *main_function = PyObject_GetAttrString(anyio_module, "process_worker");
+        CHECK_OBJECT(main_function);
+
+        CALL_FUNCTION_NO_ARGS(tstate, main_function);
+
+        int exit_code = HANDLE_PROGRAM_EXIT(tstate);
+
+        NUITKA_PRINT_TRACE("main(): Calling 'anyio.to_process' Py_Exit.");
         Py_Exit(exit_code);
     } else {
 #endif
