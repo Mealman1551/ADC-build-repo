@@ -19,7 +19,7 @@ Before starting the compilation process, ensure you have the following installed
   pip install nuitka
   ```
 - **C/C++ Compiler**:
-  - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](http://www.mingw.org/).
+  - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](https://www.mingw-w64.org/).
   - **Linux**: GCC (`sudo apt install build-essential`).
 - **SCons**: A software construction tool. Install using:
   ```sh
@@ -102,7 +102,7 @@ After successful compilation, test the executable to ensure it functions correct
 ```sh
 ./ADC_Archiver_1.2.0.exe
 ```
-To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/), [Inno Setup](https://jrsoftware.org/isinfo.php), or [InstallForge](https://installforge.net/).
+To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php)
 
 ## Troubleshooting
 
