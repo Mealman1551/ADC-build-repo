@@ -117,4 +117,4 @@ To distribute the application, consider creating an installer using tools like [
 
 For further questions or issues, please create an issue in this repository.
 
-(c) 2025 Mealman1551
+###### © 2025 Mealman1551
