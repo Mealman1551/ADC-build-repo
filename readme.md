@@ -59,15 +59,15 @@ The repository includes the following key files and directories:
 
 1. **Download the source code and compilation files**:
 
-### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode2.zip)
+### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode3.zip)
 
-### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode2.tar.gz)
+### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode3.tar.gz)
 
 
 2. **Basic Compilation Command**:
    Use Nuitka to compile the Python script into a standalone executable:
    ```sh
-   nuitka --onefile --windows-icon-from-ico=ico/ADCIcon.ico "ADC Archiver 1.2.0.py"
+   nuitka --onefile --windows-icon-from-ico=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC Archiver 1.2.0.py"
    ```
    This command generates an executable in the current directory.
 
