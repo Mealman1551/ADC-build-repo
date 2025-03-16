@@ -18,7 +18,7 @@ Before starting the compilation process, ensure you have the following installed
   ```sh
   pip install nuitka
   ```
-- **C/C++ Compiler**:
+- **C/C++ Compiler** _Not required_:
   - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](https://www.mingw-w64.org/).
   - **Linux**: GCC (`sudo apt install build-essential`).
 - **SCons**: A software construction tool. Install using:
@@ -26,6 +26,8 @@ Before starting the compilation process, ensure you have the following installed
   pip install scons
   ```
 - **ccache** (optional): For caching compiled files to speed up subsequent builds.
+
+Please note, the Python 3.12.9 setups for 64 bit as 32 bit are in the main folder, you can use these to install Python
 
 ## Project Structure
 
@@ -45,7 +47,7 @@ The repository includes the following key files and directories:
    pip install nuitka scons
    ```
 
-2. **Verify Compiler Setup**:
+2. **Verify Compiler Setup** _Not required_:
    Confirm that your C/C++ compiler is correctly installed and accessible in your system's PATH:
    ```sh
    gcc --version
@@ -59,9 +61,9 @@ The repository includes the following key files and directories:
 
 1. **Download the source code and compilation files**:
 
-### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode7.zip)
+### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode8.zip)
 
-### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode7.tar.gz)
+### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode8.tar.gz)
 
 
 2. **Basic Compilation Command**:
@@ -72,7 +74,7 @@ The repository includes the following key files and directories:
    This command generates an executable in the current directory.
 
 3. **Including Additional Files**:
-   If the application requires additional DLLs or resources, include them using the `--include-data-file` option:
+   If you want a complete portable exe, you can use the `--include-data-file` option:
    ```sh
    nuitka --onefile \
    --windows-icon-from-ico=ico/ADCIcon.ico \
@@ -104,6 +106,8 @@ After successful compilation, test the executable to ensure it functions correct
 ```
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php)
 
+There is a full setup license in rtf format in the main folder called `License for setup 1.1.0.rtf` please make sure to fill in the empty spaces with your dev name etc
+
 ## Troubleshooting
 
 - **Missing DLLs**: Ensure all required libraries are included in the compilation command and are accessible at runtime.
@@ -113,7 +117,7 @@ To distribute the application, consider creating an installer using tools like [
 
 - [Nuitka User Manual](https://nuitka.net/doc/user-manual.html)
 - [SCons Documentation](https://scons.org/doc.html)
-- [Python 3.12 Documentation](https://docs.python.org/3.12/)
+- [Python 3.12.9 Documentation](https://docs.python.org/3.12/)
 
 For further questions or issues, please create an issue in this repository.
 
