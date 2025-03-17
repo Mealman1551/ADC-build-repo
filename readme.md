@@ -19,6 +19,8 @@ Before starting the compilation process, ensure you have the following installed
   pip install nuitka
   ```
 - **C/C++ Compiler** _Not required_:
+
+_Microsoft Build Tools setup is in the main folder._
   - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](https://www.mingw-w64.org/).
   - **Linux**: GCC (`sudo apt install build-essential`).
 - **SCons**: A software construction tool. Install using:
@@ -61,9 +63,9 @@ The repository includes the following key files and directories:
 
 1. **Download the source code and compilation files**:
 
-### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode8.zip)
+### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode9.zip)
 
-### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode8.tar.gz)
+### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode9.tar.gz)
 
 
 2. **Basic Compilation Command**:
