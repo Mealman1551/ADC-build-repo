@@ -75,8 +75,15 @@ The repository includes the following key files and directories:
 
 2. **Basic Compilation Command**:
    Use Nuitka to compile the Python script into a standalone executable:
-   ```sh
+
+   Windows   
+   ```powershell
    nuitka --onefile --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC Archiver 1.2.0.py"
+   ```
+
+   Linux
+   ```sh
+   nuitka --onefile --enable-plugin=tk-inter "ADC Archiver 1.2.0.py"
    ```
    This command generates an executable in the current directory.
 
@@ -109,8 +116,10 @@ The repository includes the following key files and directories:
 
 After successful compilation, test the executable to ensure it functions correctly:
 ```sh
-./ADC_Archiver_1.2.0  # Linux
-./ADC_Archiver_1.2.0.exe  # Windows
+./ADC_Archiver_1.2.0.bin
+```
+``` powershell
+./ADC_Archiver_1.2.0.exe
 ```
 
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php) (for Windows), or packaging for Linux using tools like `dpkg` or `rpm`.
