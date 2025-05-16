@@ -31,8 +31,13 @@ Before starting the compilation process, ensure you have the following installed
   pip install scons
   ```
 - **ccache** (optional): For caching compiled files to speed up subsequent builds.
-  - **Linux**: Install with `sudo apt install ccache`.
-- **patchelf**: `sudo apt install patchelf`
+```sh
+sudo apt install ccache```
+
+**Patchelf (Required)**
+```sh
+sudo apt install patchelf
+```
 
 Please note, the Python 3.12.9 setups for both 64-bit and 32-bit are in the main folder. You can use these to install Python.
 
