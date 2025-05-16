@@ -30,11 +30,13 @@ Before starting the compilation process, ensure you have the following installed
   ```sh
   pip install scons
   ```
-- **ccache** (optional): For caching compiled files to speed up subsequent builds.
+### ccache (optional): For caching compiled files to speed up subsequent builds.
 ```sh
-sudo apt install ccache```
+sudo apt install ccache
+```
 
-**Patchelf (Required)**
+### Patchelf (required)
+
 ```sh
 sudo apt install patchelf
 ```
