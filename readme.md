@@ -1,4 +1,4 @@
-# ADC compile from scratch
+# ADC compile from source
 
 ![GitHub license](https://img.shields.io/github/license/Mealman1551/ADC)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Mealman1551/ADC)
@@ -85,12 +85,12 @@ The repository includes the following key files and directories:
 
    Windows   
    ```powershell
-   nuitka --onefile --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC Archiver 1.2.0.py"
+   nuitka --onefile --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
    ```
 
    Linux
    ```sh
-   nuitka --onefile --enable-plugin=tk-inter "ADC Archiver 1.2.0.py"
+   nuitka --onefile --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
    ```
    This command generates an executable in the current directory.
 
@@ -110,7 +110,7 @@ The repository includes the following key files and directories:
 - **Optimizing for Performance**:
   Enable link-time optimization and follow all imports:
   ```sh
-  nuitka --onefile --lto --follow-imports "ADC Archiver 1.2.0.py"
+  nuitka --onefile --lto --follow-imports "ADC_Archiver_1.3.0.py"
   ```
 
 - **Using ccache for Faster Builds**:
@@ -123,10 +123,10 @@ The repository includes the following key files and directories:
 
 After successful compilation, test the executable to ensure it functions correctly:
 ```sh
-./ADC_Archiver_1.2.0.bin
+./ADC_Archiver_1.3.0.bin
 ```
 ``` powershell
-./ADC_Archiver_1.2.0.exe
+./ADC_Archiver_1.3.0.exe
 ```
 
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php) (for Windows), or packaging for Linux using tools like `dpkg` or `rpm`.
