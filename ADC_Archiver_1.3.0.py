@@ -5,6 +5,18 @@
 
 #ADC 1.3.0 is based on Aurora 2025.04.1 but directly modified
 
+#-------------------------------------------------
+
+#This is the source for compilation from source, for more information visit: https://github.com/Mealman1551/ADC-compile-from-scratch
+
+#compilation uses Nuitka, a Python to C compiler, to compile the source code into a standalone executable.
+
+#To compile this source code, you need to have Python 3.11 to 3.12 installed, as well as the Nuitka compiler.
+
+#You can install Nuitka using pip:
+#pip install nuitka
+
+
 
 import os
 import zlib
