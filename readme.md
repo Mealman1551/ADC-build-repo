@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/Mealman1551/ADC)
 ![GitHub stars](https://img.shields.io/github/stars/Mealman1551/ADC)
 
-Welcome to the **ADC-compile-from-scratch** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.2.0 executable without relying on precompiled setups.
+Welcome to the **ADC-compile-from-scratch** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
 
 ## Overview
 
@@ -41,13 +41,13 @@ sudo apt install ccache
 sudo apt install patchelf
 ```
 
-Please note, the Python 3.12.9 setups for both 64-bit and 32-bit are in the main folder. You can use these to install Python.
+Please note, the Python 3.12.10 setups for both 64-bit and 32-bit are in the main folder. You can use these to install Python.
 
 ## Project Structure
 
 The repository includes the following key files and directories:
 
-- `ADC Archiver 1.2.0.py`: Main Python source code.
+- `ADC_Archiver_1.3.0.py`: Main Python source code.
 - `ico/`: Directory containing icon files.
 - `setup/`: Directory with setup-related scripts and configurations.
 - `static_src/`: Directory containing static source files.
@@ -76,9 +76,9 @@ The repository includes the following key files and directories:
 
 1. **Download the source code and compilation files**:
 
-### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode13.zip)
+### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode14.zip)
 
-### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode13.tar.gz)
+### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode14.tar.gz)
 
 2. **Basic Compilation Command**:
    Use Nuitka to compile the Python script into a standalone executable:
@@ -101,7 +101,7 @@ The repository includes the following key files and directories:
    --icon=ico/ADCIcon.ico \
    --include-data-file=libcrypto-3.dll=libcrypto-3.dll \
    --include-data-file=tcl86t.dll=tcl86t.dll \
-   "ADC Archiver 1.2.0.py"
+   "ADC Archiver 1.3.0.py"
    ```
    For Linux, ensure you include any necessary `.so` files in a similar manner, adjusting paths as needed.
 
@@ -142,7 +142,7 @@ There is a full setup license in RTF format in the main folder called `License f
 
 - [Nuitka User Manual](https://nuitka.net/doc/user-manual.html)
 - [SCons Documentation](https://scons.org/doc.html)
-- [Python 3.12.9 Documentation](https://docs.python.org/3.12/)
+- [Python 3.12.10 Documentation](https://docs.python.org/3.12/)
 
 For further questions or issues, please create an issue in this repository.
 
