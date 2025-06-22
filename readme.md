@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/Mealman1551/ADC)
 ![GitHub stars](https://img.shields.io/github/stars/Mealman1551/ADC)
 
-Welcome to the **ADC-compile-from-scratch** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
+Welcome to the **ADC-compile-from-source** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
 
 ## Overview
 
