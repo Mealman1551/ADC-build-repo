@@ -9,7 +9,7 @@ Welcome to the **ADC-compile-from-source** repository! This repository provides 
 
 ## Overview
 
-This repository contains the source code and resources required to compile the ADC Archiver 1.2.0 from scratch. It is intended for users who prefer to build the software manually.
+This repository contains the source code and resources required to compile the ADC Archiver 1.3.0 from scratch. It is intended for users who prefer to build the software manually.
 
 **Please Note:**
 - This repository does not include precompiled executables or installers. It is solely intended for manual compilation using the provided source files.
