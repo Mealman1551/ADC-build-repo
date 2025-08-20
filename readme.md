@@ -50,7 +50,6 @@ The repository includes the following key files and directories:
 - `ADC_Archiver_1.3.0.py`: Main Python source code.
 - `ico/`: Directory containing icon files.
 - `setup/`: Directory with setup-related scripts and configurations.
-- `static_src/`: Directory containing static source files.
 - Additional resource directories: `banner/`, `jpg/`, `png/`, `svg/`, `webp/`.
 
 ## Setting Up the Environment
@@ -80,7 +79,14 @@ The repository includes the following key files and directories:
 
 ### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode14.tar.gz)
 
-2. **Basic Compilation Command**:
+
+2. **Install required pip packages via requirements.txt**:
+
+You need to install the right libraries for the program to work!
+
+See: `requirements.txt`
+
+3. **Basic Compilation Command**:
    Use Nuitka to compile the Python script into a standalone executable:
 
    Windows   
@@ -94,7 +100,7 @@ The repository includes the following key files and directories:
    ```
    This command generates an executable in the current directory.
 
-3. **Including Additional Files**:
+4. **Including Additional Files**:
    If you want a complete portable executable, you can use the `--include-data-file` option:
    ```sh
    nuitka --onefile \
