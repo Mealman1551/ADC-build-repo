@@ -80,11 +80,16 @@ The repository includes the following key files and directories:
 ### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode15.tar.gz)
 
 
-2. **Install required pip packages via requirements.txt**:
+2. **Install required pip libraries**:
 
 You need to install the right libraries for the program to work!
 
 See: `requirements.txt`
+
+Also install tkinter on linux by:
+```sh
+sudo apt install python3-tk
+```
 
 3. **Basic Compilation Command**:
    Use Nuitka to compile the Python script into a standalone executable:
