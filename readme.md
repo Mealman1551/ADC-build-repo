@@ -11,37 +11,78 @@ Welcome to the **ADC-compile-from-source** repository! This repository provides 
 
 This repository contains the source code and resources required to compile the ADC Archiver 1.3.0 from scratch. It is intended for users who prefer to build the software manually.
 
-**Please Note:**
-- This repository does not include precompiled executables or installers. It is solely intended for manual compilation using the provided source files.
 
-## Prerequisites
+## Windows
 
-Before starting the compilation process, ensure you have the following installed:
+1. Install Python 3.12.x, you can download it [here](https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe) (64bit only)
+please note: Python 3.12.10 setups for both 64 and 32 bits are in the source package that you will be downloading in the next steps.
+2. Add Python to path while installing.
+3. Download the source archive, for Windows this will be a zip archive: [Download source package](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.zip)
+4. Extract the zip.
+5. Open the terminal in the source archive.
+6. Install required Python libraries with:
+```powershell
+pip install -r requirements.txt
+```
+7. Install Nuitka and Scons:
+```powershell
+pip install nuitka scons
+```
+### Compile on Windows
 
-- **Python 3.12.x**: Download from the [official Python website](https://www.python.org/downloads/).
-- **Nuitka**: A Python-to-C compiler. Install using:
-  ```sh
-  pip install nuitka
-  ```
-- **C/C++ Compiler**:
-  - **Windows**: [Microsoft Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) or [MinGW](https://www.mingw-w64.org/).
-  - **Linux**: GCC (`sudo apt install build-essential`).
-- **SCons**: A software construction tool. Install using:
-  ```sh
-  pip install scons
-  ```
-### ccache (optional): For caching compiled files to speed up subsequent builds.
+1. Run in the terminal, cd'ed in the source archive:
+```powershell
+nuitka --standalone --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
+```
+2. After compiling is done, open the `dist` folder, there you will see: `ADC_Archiver_1.3.0.exe`
+3. Run the executable by dubble clicking the file or:
+```powershell
+./ADC_Archiver_1.3.0.exe
+```
+## Linux
+
+Python is almost everywhere pre-delivered on most Linux distro's
+
+1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.tar.gz)
+2. Open the terminal in the source archive.
+3. Install required Python libraries:
+```sh
+pip install -r requirements.txt
+```
+4. Install Nuitka and Scons:
+```sh
+pip install nuitka scons
+```
+5. Install Tkinter
+```sh
+sudo apt install python3-tk
+```
+6. Install Patchelf:
+```sh
+sudo apt install patchelf
+```
+7. Optional: Install ccache to make compiling faster:
 ```sh
 sudo apt install ccache
 ```
 
-### Patchelf (required)
+### Compile on Linux
 
+1. Compile with:
 ```sh
-sudo apt install patchelf
+nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
+```
+2. After compiling you can open the executable by running:
+```sh
+./ADC_Archiver_1.3.0.bin
 ```
 
-Please note, the Python 3.12.10 setups for both 64-bit and 32-bit are in the main folder. You can use these to install Python.
+---
+
+## Using Python 3.13 and up
+
+Python 3.13 and up compilation works on Linux but for Windows you need a C compiler, in the source archive there is a file named `vs_BuildTools.exe`, run this on Windows and now you will be able to compile on Python 3.13 and up on Windows.
+
 
 ## Project Structure
 
@@ -52,82 +93,18 @@ The repository includes the following key files and directories:
 - `setup/`: Directory with setup-related scripts and configurations.
 - Additional resource directories: `banner/`, `jpg/`, `png/`, `svg/`, `webp/`.
 
-## Setting Up the Environment
-
-1. **Install Required Libraries**:
-   Ensure `nuitka` and `scons` are installed:
-   ```sh
-   pip install nuitka scons
-   ```
-
-2. **Verify Compiler Setup**:
-   Confirm that your C/C++ compiler is correctly installed and accessible in your system's PATH:
-   ```sh
-   gcc --version  # Linux
-   cl --version  # Windows
-   ```
-   If using `ccache`, verify its installation:
-   ```sh
-   ccache --version
-   ```
-
-## Compilation Steps
-
-1. **Download the source code and compilation files**:
-
-### [Download Zip](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode15.zip)
-
-### [Download Tar.gz](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode15.tar.gz)
-
-
-2. **Install required pip libraries**:
-
-You need to install the right libraries for the program to work!
-
-See: `requirements.txt`
-
-Also install tkinter on linux by:
-```sh
-sudo apt install python3-tk
-```
-
-3. **Basic Compilation Command**:
-   Use Nuitka to compile the Python script into a standalone executable:
-
-   Windows   
-   ```powershell
-   nuitka --onefile --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
-   ```
-
-   Linux
-   ```sh
-   nuitka --onefile --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
-   ```
-   This command generates an executable in the current directory.
-
-4. **Including Additional Files**:
-   If you want a complete portable executable, you can use the `--include-data-file` option:
-   ```sh
-   nuitka --onefile \
-   --icon=ico/ADCIcon.ico \
-   --include-data-file=libcrypto-3.dll=libcrypto-3.dll \
-   --include-data-file=tcl86t.dll=tcl86t.dll \
-   "ADC Archiver 1.3.0.py"
-   ```
-   For Linux, ensure you include any necessary `.so` files in a similar manner, adjusting paths as needed.
-
 ## Advanced Compilation Options
 
 - **Optimizing for Performance**:
   Enable link-time optimization and follow all imports:
   ```sh
-  nuitka --onefile --lto --follow-imports "ADC_Archiver_1.3.0.py"
+  nuitka --standalone --lto --follow-imports "ADC_Archiver_1.3.0.py"
   ```
 
 - **Using ccache for Faster Builds**:
   Configure your environment to use `ccache`:
   ```sh
-  export PATH=/path/to/ccache:$PATH  # Linux
+  export PATH=/path/to/ccache:$PATH
   ```
 
 ## Packaging and Distribution
@@ -142,7 +119,7 @@ After successful compilation, test the executable to ensure it functions correct
 
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php) (for Windows), or packaging for Linux using tools like `dpkg` or `rpm`.
 
-There is a full setup license in RTF format in the main folder called `License for setup 1.1.0.rtf`. Please make sure to fill in the empty spaces with your dev name, etc.
+There is a full setup license in RTF format in the source archive called `License for setup 1.1.0.rtf`. Please make sure to fill in the empty spaces with your dev name, etc.
 
 ## Troubleshooting
 
