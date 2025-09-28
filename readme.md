@@ -15,7 +15,7 @@ This repository contains the source code and resources required to compile the A
 ## Windows
 
 1. Install Python 3.12.x, you can download it [here](https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe) (64bit only)
-please note: Python 3.12.10 setups for both 64 and 32 bits are in the source package that you will be downloading in the next steps.
+**please note:** Python 3.12.10 setups for both 64 and 32 bits are in the source package that you will be downloading in the next steps.
 2. Add Python to path while installing.
 3. Download the source archive, for Windows this will be a zip archive: [Download source package](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.zip)
 4. Extract the zip.
