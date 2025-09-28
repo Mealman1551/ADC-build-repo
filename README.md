@@ -99,8 +99,15 @@ The repository includes the following key files and directories:
 
 - `ADC_Archiver_1.3.0.py`: Main Python source code.
 - `ico/`: Directory containing icon files.
-- `setup/`: Directory with setup-related scripts and configurations.
+- `setup/`: Directory with setup-related images like the `setupbox.ico`.
 - Additional resource directories: `banner/`, `jpg/`, `png/`, `svg/`, `webp/`.
+- `get-pip.py` is the script to install pip (If not already delivered with your Python installation).
+- `License for setup 1.1.rtf` The documents for distributing setup.exe's.
+- `LICENSE` Is the License (GPLv3 license) file.
+- `python-3.12.10-32bit.exe` and `python-3.12.10-amd64.exe` Are the setup files for Python on both 64 as 32 bit Python.
+- `requirements.txt` Includes Python libraries needed for ADC to work.
+- `runtime.txt` Is the file that tells which Python versions are compatible.
+- `vs_BuildTools.exe` The setup for MSVC (Clang compiler) to compile on Python 3.13.x.
 
 ## Advanced Compilation Options
 
