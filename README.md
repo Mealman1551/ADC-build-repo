@@ -32,13 +32,16 @@ pip install nuitka scons
 
 1. Run in the terminal, cd'ed in the source archive:
 ```powershell
-nuitka --standalone --icon=ico/ADCIcon.ico --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
+nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
 ```
 2. After compiling is done, open the `dist` folder, there you will see: `ADC_Archiver_1.3.0.exe`
 3. Run the executable by dubble clicking the file or:
 ```powershell
 ./ADC_Archiver_1.3.0.exe
 ```
+
+For custom .exe icon please use ResourceHacker as Nuitka doesnt support icons anymore.
+
 ## Linux
 
 Python is almost everywhere pre-delivered on most Linux distro's
