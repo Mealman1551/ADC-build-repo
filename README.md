@@ -15,7 +15,11 @@ This repository contains the source code and resources required to compile the A
 ## Windows
 
 1. Install Python 3.12.x, you can download it [here](https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe) (64bit only)
+
+
 **please note:** Python 3.12.10 setups for both 64 and 32 bits are in the source package that you will be downloading in the next steps.
+
+
 2. Add Python to path while installing.
 3. Download the source archive, for Windows this will be a zip archive: [Download source package](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.zip)
 4. Extract the zip.
@@ -86,6 +90,8 @@ nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
 
 Python 3.13 and up compilation works on Linux but for Windows you need a C compiler, in the source archive there is a file named `vs_BuildTools.exe`, run this on Windows and now you will be able to compile on Python 3.13 and up on Windows.
 
+> [!Note]
+> Im currently testing if MinGW64 is also possible.
 
 ## Project Structure
 
