@@ -135,7 +135,7 @@ After successful compilation, test the executable to ensure it functions correct
 
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php) (for Windows), or packaging for Linux using tools like `dpkg` or `rpm`.
 
-There is a full setup license in RTF format in the source archive called `License for setup 1.1.0.rtf`. Please make sure to fill in the empty spaces with your dev name, etc.
+There is a full setup license in RTF format in the source archive called `License for setup 1.1.rtf`. Please make sure to fill in the empty spaces with your dev name, etc.
 
 ## Troubleshooting
 
