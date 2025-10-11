@@ -1,11 +1,11 @@
-# ADC compile from source
+# ADC build from sourcecode
 
 ![GitHub license](https://img.shields.io/github/license/Mealman1551/ADC)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Mealman1551/ADC)
 ![GitHub issues](https://img.shields.io/github/issues/Mealman1551/ADC)
 ![GitHub stars](https://img.shields.io/github/stars/Mealman1551/ADC)
 
-Welcome to the **ADC-compile-from-source** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
+Welcome to the **ADC build from sourcecode** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
 
 ## Overview
 
@@ -157,3 +157,4 @@ If you want to support the project please consider a small donation: <a href="ht
 </a>
 
 ###### © 2025 Mealman1551
+
