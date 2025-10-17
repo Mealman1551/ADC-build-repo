@@ -5,11 +5,11 @@
 ![GitHub issues](https://img.shields.io/github/issues/Mealman1551/ADC)
 ![GitHub stars](https://img.shields.io/github/stars/Mealman1551/ADC)
 
-Welcome to the **ADC build from sourcecode** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.3.0 executable without relying on precompiled setups.
+Welcome to the **ADC build from sourcecode** repository! This repository provides all necessary files to manually compile the ADC Archiver 1.4.0 executable without relying on precompiled setups.
 
 ## Overview
 
-This repository contains the source code and resources required to compile the ADC Archiver 1.3.0 from scratch. It is intended for users who prefer to build the software manually.
+This repository contains the source code and resources required to compile the ADC Archiver 1.4.0 from scratch. It is intended for users who prefer to build the software manually.
 
 
 ## Windows
@@ -21,7 +21,7 @@ This repository contains the source code and resources required to compile the A
 
 
 2. Add Python to path while installing.
-3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.zip)
+3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode17.zip)
 4. Extract the zip.
 5. Open the terminal in the source archive.
 6. Install required Python libraries with:
@@ -36,12 +36,12 @@ pip install nuitka scons
 
 1. Run in the terminal, cd'ed in the source archive:
 ```powershell
-nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
+nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.4.0.py"
 ```
-2. After compiling is done, open the `dist` folder, there you will see: `ADC_Archiver_1.3.0.exe`
+2. After compiling is done, open the `dist` folder, there you will see: `ADC_Archiver_1.4.0.exe`
 3. Run the executable by dubble clicking the file or:
 ```powershell
-./ADC_Archiver_1.3.0.exe
+./ADC_Archiver_1.4.0.exe
 ```
 
 For custom .exe icon please use ResourceHacker as Nuitka doesnt support icons anymore.
@@ -50,7 +50,7 @@ For custom .exe icon please use ResourceHacker as Nuitka doesnt support icons an
 
 Python is almost everywhere pre-delivered on most Linux distro's
 
-1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode16.tar.gz)
+1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode17.tar.gz)
 2. Open the terminal in the source archive.
 3. Install required Python libraries:
 ```sh
@@ -77,11 +77,11 @@ sudo apt install ccache
 
 1. Compile with:
 ```sh
-nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
+nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.4.0.py"
 ```
 2. After compiling you can open the executable by running:
 ```sh
-./ADC_Archiver_1.3.0.bin
+./ADC_Archiver_1.4.0.bin
 ```
 
 ---
@@ -91,13 +91,13 @@ nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.3.0.py"
 Python 3.13 and up compilation works on Linux but for Windows you need a C compiler, in the source archive there is a file named `vs_BuildTools.exe`, run this on Windows and now you will be able to compile on Python 3.13 and up on Windows.
 
 > [!Note]
-> Im currently testing if MinGW64 is also possible.
+> For Python 3.13 and up you need MSVC, MinGW doesn't work!
 
 ## Project Structure
 
 The repository includes the following key files and directories:
 
-- `ADC_Archiver_1.3.0.py`: Main Python source code.
+- `ADC_Archiver_1.4.0.py`: Main Python source code.
 - `ico/`: Directory containing icon files.
 - `setup/`: Directory with setup-related images like the `setupbox.ico`.
 - Additional resource directories: `banner/`, `jpg/`, `png/`, `svg/`, `webp/`.
@@ -114,7 +114,7 @@ The repository includes the following key files and directories:
 - **Optimizing for Performance**:
   Enable link-time optimization and follow all imports:
   ```sh
-  nuitka --standalone --lto --follow-imports "ADC_Archiver_1.3.0.py"
+  nuitka --standalone --lto --follow-imports "ADC_Archiver_1.4.0.py"
   ```
 
 - **Using ccache for Faster Builds**:
@@ -127,10 +127,10 @@ The repository includes the following key files and directories:
 
 After successful compilation, test the executable to ensure it functions correctly:
 ```sh
-./ADC_Archiver_1.3.0.bin
+./ADC_Archiver_1.4.0.bin
 ```
 ``` powershell
-./ADC_Archiver_1.3.0.exe
+./ADC_Archiver_1.4.0.exe
 ```
 
 To distribute the application, consider creating an installer using tools like [NSIS](https://nsis.sourceforge.io/) or [Inno Setup](https://jrsoftware.org/isinfo.php) (for Windows), or packaging for Linux using tools like `dpkg` or `rpm`.
