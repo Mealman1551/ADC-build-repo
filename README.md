@@ -52,23 +52,27 @@ Python is almost everywhere pre-delivered on most Linux distro's
 
 1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode17.tar.gz)
 2. Open the terminal in the source archive.
-3. Install required Python libraries:
+3. Install pip
+```bash
+sudo apt install pip
+```
+4. Install required Python libraries:
 ```sh
 pip install -r requirements.txt
 ```
-4. Install Nuitka and Scons:
+5. Install Nuitka and Scons:
 ```sh
 pip install nuitka scons
 ```
-5. Install Tkinter
+6. Install Tkinter
 ```sh
 sudo apt install python3-tk
 ```
-6. Install Patchelf:
+7. Install Patchelf:
 ```sh
 sudo apt install patchelf
 ```
-7. Optional: Install ccache to make compiling faster:
+8. Optional: Install ccache to make compiling faster:
 ```sh
 sudo apt install ccache
 ```
@@ -91,7 +95,7 @@ nuitka --standalone --enable-plugin=tk-inter "ADC_Archiver_1.4.0.py"
 Python 3.13 and up compilation works on Linux but for Windows you need a C compiler, in the source archive there is a file named `vs_BuildTools.exe`, run this on Windows and now you will be able to compile on Python 3.13 and up on Windows.
 
 > [!Note]
-> For Python 3.13 and up you need MSVC, MinGW doesn't work!
+> [Windows only!] For Python 3.13 and up you need MSVC, MinGW doesn't work!
 
 ## Project Structure
 
