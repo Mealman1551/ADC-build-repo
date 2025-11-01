@@ -21,7 +21,7 @@ This repository contains the source code and resources required to compile the A
 
 
 2. Add Python to path while installing.
-3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-build-repo/releases/latest/download/ADC-build.zip)
+3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-build-repo/archive/refs/heads/main.zip)
 4. Extract the zip.
 5. Open the terminal in the source archive.
 6. Install required Python libraries with:
