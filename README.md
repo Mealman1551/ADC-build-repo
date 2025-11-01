@@ -21,7 +21,7 @@ This repository contains the source code and resources required to compile the A
 
 
 2. Add Python to path while installing.
-3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode17.zip)
+3. Download the source archive, for Windows this will be a zip archive: [Download source package for Windows](https://github.com/Mealman1551/ADC-build-repo/releases/latest/download/ADC-build.zip)
 4. Extract the zip.
 5. Open the terminal in the source archive.
 6. Install required Python libraries with:
@@ -50,7 +50,7 @@ For custom .exe icon please use ResourceHacker as Nuitka doesnt support icons an
 
 Python is almost everywhere pre-delivered on most Linux distro's
 
-1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-compile-from-scratch/archive/refs/tags/sourcecode17.tar.gz)
+1. Download the source archive for Linux [Download source package for Linux](https://github.com/Mealman1551/ADC-build-repo/archive/refs/heads/main.tar.gz)
 2. Open the terminal in the source archive.
 3. Install pip
 ```bash
